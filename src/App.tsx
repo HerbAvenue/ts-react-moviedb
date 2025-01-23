@@ -26,14 +26,25 @@ function App() {
   //Returns template to > main.tsx > index.html
   return (
     <>
-      {movies.map((movie: { original_title: string; overview: string; release_date: string }, index) => (
-        <MovieCard
-          key={index}
-          title={movie.original_title}
-          overview={movie.overview}
-          releaseDate={movie.release_date}
-        />
-      ))}
+        {movies.map(
+          (
+            movie: {
+              original_title: string;
+              overview: string;
+              release_date: string;
+              poster_path: string;
+            },
+            index
+          ) => (
+            <MovieCard
+              key={index}
+              title={movie.original_title}
+              overview={movie.overview}
+              releaseDate={movie.release_date}
+              posterPath={movie.poster_path}
+            />
+          )
+        )}
     </>
   );
 }
