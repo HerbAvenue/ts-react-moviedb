@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node /backend/server/server.js",
+    "start": "node backend/server/server.js", 
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm --prefix backend/server install && npm run build"
   },
   "dependencies": {
