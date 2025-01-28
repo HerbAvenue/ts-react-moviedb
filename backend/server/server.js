@@ -2,6 +2,8 @@
 const express = require("express");
 const app = express();
 
+const path = require('path');
+
 //Initializes cors (cross origin communication (I.E React front-end to NodeJS back-end)
 const cors = require("cors");
 const corsOptions = {
