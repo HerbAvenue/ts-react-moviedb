@@ -49,10 +49,10 @@ app.get("/api", async (req, res) => {
 
 // Serve React static files in production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../../build"))); // Adjust path as needed for your setup
+  app.use(express.static(path.join(__dirname, "../../dist"))); // Adjust path as needed for your setup
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../../build", "index.html"));
+    res.sendFile(path.join(__dirname, "../../dist", "index.html"));
   });
 }
 
