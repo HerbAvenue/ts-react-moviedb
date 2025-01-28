@@ -1,6 +1,5 @@
-//import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 
 // Import Swiper styles
 // @ts-ignore
@@ -11,9 +10,6 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 import "../App.css";
-
-// import required modules
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 
 interface Movie {
   original_title: string;
@@ -27,7 +23,6 @@ interface CarouselProps {
 function Carousel({ movies }: CarouselProps) {
   return (
     <>
-      <h1 style={{textAlign: "center", color: "black"}}>Now Playing</h1>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

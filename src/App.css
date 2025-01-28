@@ -1,4 +1,7 @@
-/* Ensure the Swiper container takes up full width of the screen */
+.navbar {
+  background-image: linear-gradient(to bottom, black, darkslategrey);
+}
+
 .mySwiper {
     width: 70%;
     margin: 20px;
@@ -10,3 +13,4 @@
     margin: 0 auto; /* Center the image inside the slide */
     display: block; /* Ensure block display to prevent inline issues */
   }
+

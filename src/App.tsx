@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
-import axios from "axios";
+
 import MovieCard from "./components/moviecard";
 import Carousel from "./components/carousel";
+import NavBar from "./components/navbar";
 
 function App() {
   //Array of movies fetched from NodeJS
@@ -30,10 +32,8 @@ function App() {
   //Returns template to > main.tsx > index.html
   return (
     <>
-      
-      
+      <NavBar />
       <Carousel movies={nowPlayingMovies} />
-
 
       <div className="container">
         {popularMovies.map(
