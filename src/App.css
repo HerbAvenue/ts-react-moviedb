@@ -1,0 +1,12 @@
+/* Ensure the Swiper container takes up full width of the screen */
+.mySwiper {
+    width: 70%;
+    margin: 20px;
+  }
+  
+  /* Resize the images inside the swiper slides */
+  .mySwiper img {
+    max-width: 100%; /* Limit the image size, can adjust this value */
+    margin: 0 auto; /* Center the image inside the slide */
+    display: block; /* Ensure block display to prevent inline issues */
+  }

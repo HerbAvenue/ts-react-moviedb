@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import MovieCard from "./components/moviecard";
+import Carousel from "./components/carousel";
 
 function App() {
   //Array of movies fetched from NodeJS
-  const [movies, setMovies] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
 
   //Function to fetch data from NodeJS
   const fetchAPI = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api");
-      setMovies(response.data); //Saves titles to state
+      setPopularMovies(response.data.popularMovies);
+      setNowPlayingMovies(response.data.nowPlayingMovies);
     } catch (error) {
       console.error("Error fetching movies:", error);
     }
@@ -26,7 +30,13 @@ function App() {
   //Returns template to > main.tsx > index.html
   return (
     <>
-        {movies.map(
+      
+      
+      <Carousel movies={nowPlayingMovies} />
+
+
+      <div className="container">
+        {popularMovies.map(
           (
             movie: {
               original_title: string;
@@ -45,6 +55,7 @@ function App() {
             />
           )
         )}
+      </div>
     </>
   );
 }
