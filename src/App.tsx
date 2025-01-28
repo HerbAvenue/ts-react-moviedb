@@ -34,28 +34,7 @@ function App() {
     <>
       <NavBar />
       <Carousel movies={nowPlayingMovies} />
-
-      <div className="container">
-        {popularMovies.map(
-          (
-            movie: {
-              original_title: string;
-              overview: string;
-              release_date: string;
-              poster_path: string;
-            },
-            index
-          ) => (
-            <MovieCard
-              key={index}
-              title={movie.original_title}
-              overview={movie.overview}
-              releaseDate={movie.release_date}
-              posterPath={movie.poster_path}
-            />
-          )
-        )}
-      </div>
+      <MovieCard movies={popularMovies} />
     </>
   );
 }
