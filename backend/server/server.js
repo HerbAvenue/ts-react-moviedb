@@ -5,7 +5,7 @@ const app = express();
 //Initializes cors (cross origin communication (I.E React front-end to NodeJS back-end)
 const cors = require("cors");
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: process.env.CORS_ORIGIN || "http://localhost:5173",
 };
 app.use(cors(corsOptions));
 
@@ -32,22 +32,32 @@ app.get("/api", async (req, res) => {
       fetch(nowPlayingUrl, options),
     ]);
 
-      // Parse responses as JSON
-      const popMovies = await popMoviesResponse.json();
-      const playingMovies = await nowPlayingResponse.json();
-  
-      // Combine results and send them as a single response
-      res.json({
-        popularMovies: popMovies.results,
-        nowPlayingMovies: playingMovies.results,
-      });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Failed to fetch data from APIs." });
-    }
+    // Parse responses as JSON
+    const popMovies = await popMoviesResponse.json();
+    const playingMovies = await nowPlayingResponse.json();
+
+    // Combine results and send them as a single response
+    res.json({
+      popularMovies: popMovies.results,
+      nowPlayingMovies: playingMovies.results,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch data from APIs." });
+  }
 });
 
+// Serve React static files in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../../build"))); // Adjust path as needed for your setup
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../build", "index.html"));
+  });
+}
+
 //Starts Express.JS server and waits for requests at a specific port.
-app.listen(8080, () => {
-  console.log("Server started on port 8080.");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}.`);
 });
