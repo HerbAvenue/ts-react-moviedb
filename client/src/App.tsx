@@ -16,7 +16,7 @@ function App() {
   //Function to fetch data from NodeJS
   const fetchAPI = async () => {
     try {
-      const response = await axios.get("https://react-movie-db-eac7a38d62e9.herokuapp.com/api");
+      const response = await axios.get("https://movies.petti.dev/api");
       setPopularMovies(response.data.popularMovies);
       setNowPlayingMovies(response.data.nowPlayingMovies);
     } catch (error) {
