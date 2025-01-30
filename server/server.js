@@ -2,12 +2,23 @@
 const express = require("express");
 const app = express();
 
-const path = require('path');
+const path = require("path");
 
 //Initializes cors (cross origin communication (I.E React front-end to NodeJS back-end)
 const cors = require("cors");
+const allowedOrigins = [
+  "https://movies.petti.dev", // Your production domain
+  "https://your-app.herokuapp.com", // Heroku app URL
+  "http://localhost:5173", // For local development
+];
 const corsOptions = {
-  origin: "https://movies.petti.dev/" || "https://react-movie-db-eac7a38d62e9.herokuapp.com/" || `http://localhost:5173`,
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
 };
 app.use(cors(corsOptions));
 
@@ -50,9 +61,9 @@ app.get("/api", async (req, res) => {
 });
 
 // Serve React static files in production
-app.use(express.static(path.join(__dirname, 'dist')));
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+app.use(express.static(path.join(__dirname, "dist")));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 //Starts Express.JS server and waits for requests at a specific port.
