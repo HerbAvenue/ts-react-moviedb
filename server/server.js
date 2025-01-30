@@ -67,7 +67,6 @@ app.get("/api/search", async (req, res) => {
     return res.status(400).json({ message: "Query parameter is required." });
   }
 
-  //'https://api.themoviedb.org/3/search/movie?query=holes&include_adult=false&language=en-US&page=1';
   const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
     query
   )}&language=en-US&page=1`;

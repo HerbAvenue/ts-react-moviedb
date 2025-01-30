@@ -16,7 +16,7 @@ function App() {
   //Function to fetch data from NodeJS
   const fetchAPI = async () => {
     try {
-      const response = await axios.get("/api/");
+      const response = await axios.get("/api");
       setPopularMovies(response.data.popularMovies);
       setNowPlayingMovies(response.data.nowPlayingMovies);
     } catch (error) {
