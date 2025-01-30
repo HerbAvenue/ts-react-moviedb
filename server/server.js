@@ -16,9 +16,9 @@ const corsOptions = {
     if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS"));
     }
-  }
+  },
 };
 app.use(cors(corsOptions));
 
@@ -57,6 +57,40 @@ app.get("/api", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to fetch data from APIs." });
+  }
+});
+
+//TESTING SEARCH API
+app.get("/api/search", async (req, res) => {
+  const query = req.query.query; // Get search query from the request
+  if (!query) {
+    return res.status(400).json({ message: "Query parameter is required." });
+  }
+
+  //'https://api.themoviedb.org/3/search/movie?query=holes&include_adult=false&language=en-US&page=1';
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+    query
+  )}&language=en-US&page=1`;
+
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyY2JlNDYzNjJmNDVjZDdiN2FjZjRmNjMwYWZjMDM3NCIsIm5iZiI6MTUwMjEzNTU5OS4zMTUsInN1YiI6IjU5ODhjNTJkOTI1MTQxNGMwNDAwMTlmYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GKZO7LNj2wUe2urUZ-QI0-UFW2HvmdH3Z8AfXdsgKio",
+    },
+  };
+
+  try {
+    // Fetch search results from the Movie Database API
+    const searchResponse = await fetch(searchUrl, options);
+    const searchData = await searchResponse.json();
+
+    // Send the search results as the response
+    res.json(searchData.results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch search results." });
   }
 });
 
