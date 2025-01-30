@@ -24,28 +24,16 @@ function MovieCard({ movies }: CardProps) {
     <div className="container-lg">
       <h1 style={{color: "white"}}>Most Popular This Week:</h1>
       <div className="row">
-        {movies.slice(0, 8).map((movie) => (
-          <div className="col">
+        {movies.slice(0, 12).map((movie) => (
+          <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} // Add the base URL for the poster image
-              className="d-block w-100"
+              className="poster d-block w-100 p-1"
               alt={movie.original_title}
             />
           </div>
         ))}
       </div>
-      <br />
-      {/* <div className="row">
-        {movies.slice(6, 12).map((movie) => (
-          <div className="col">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} // Add the base URL for the poster image
-              className="d-block w-100"
-              alt={movie.original_title}
-            />
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 }
