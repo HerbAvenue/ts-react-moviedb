@@ -16,7 +16,7 @@ function App() {
   //Function to fetch data from NodeJS
   const fetchAPI = async () => {
     try {
-      const response = await axios.get("https://movies.petti.dev/api");
+      const response = await axios.get("/api/");
       setPopularMovies(response.data.popularMovies);
       setNowPlayingMovies(response.data.nowPlayingMovies);
     } catch (error) {
@@ -37,6 +37,8 @@ function App() {
       <MovieCard movies={popularMovies} />
     </>
   );
+  
+  console.log(import.meta.env);
 }
 
 export default App;
