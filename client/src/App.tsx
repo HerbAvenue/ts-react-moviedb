@@ -37,8 +37,6 @@ function App() {
       <MovieCard movies={popularMovies} />
     </>
   );
-  
-  console.log(import.meta.env);
 }
 
 export default App;

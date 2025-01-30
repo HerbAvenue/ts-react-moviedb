@@ -7,7 +7,7 @@ const path = require('path');
 //Initializes cors (cross origin communication (I.E React front-end to NodeJS back-end)
 const cors = require("cors");
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN || `http://localhost:5173`,
+  origin: "https://movies.petti.dev/" || "https://react-movie-db-eac7a38d62e9.herokuapp.com/" || `http://localhost:5173`,
 };
 app.use(cors(corsOptions));
 
@@ -59,4 +59,5 @@ app.get('/*', (req, res) => {
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}.`);
+  //console.log(process.env)
 });
