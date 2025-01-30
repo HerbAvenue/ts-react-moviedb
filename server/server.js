@@ -8,7 +8,7 @@ const path = require("path");
 const cors = require("cors");
 const allowedOrigins = [
   "https://movies.petti.dev", // Your production domain
-  "https://your-app.herokuapp.com", // Heroku app URL
+  "https://react-movie-db-eac7a38d62e9.herokuapp.com/", // Heroku app URL
   "http://localhost:5173", // For local development
 ];
 const corsOptions = {
